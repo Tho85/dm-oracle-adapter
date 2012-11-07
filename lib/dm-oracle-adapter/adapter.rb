@@ -18,7 +18,7 @@ module DataMapper
         #
         # @api private
         def insert_statement(model, properties, serial)
-          statement = "INSERT INTO #{quote_name(model.storage_name(name))} "
+          statement = "INSERT INTO #{model.storage_name(name)} "
 
           no_properties   = properties.empty?
           custom_sequence = serial && serial.options[:sequence]
@@ -126,7 +126,7 @@ module DataMapper
           conditions_statement, bind_values = conditions_statement(conditions, qualify)
 
           model_key_column = columns_statement(model.key(name), qualify)
-          from_statement   = " FROM #{quote_name(model.storage_name(name))}"
+          from_statement   = " FROM #{model.storage_name(name)}"
 
           statement = "SELECT #{columns_statement(fields, qualify)}"
           if use_subquery
